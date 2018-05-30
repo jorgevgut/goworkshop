@@ -35,7 +35,7 @@ func (store *SimpleStore) Load(key interface{}) (interface{}, error) {
 	if !ok {
 		return nil, errors.New("Value is not stored")
 	}
-	fmt.Printf("this is a Load type is %v...", reflect.TypeOf(value).String())
+	fmt.Printf("this is a Load type is %v...\n", reflect.TypeOf(value).String())
 
 	switch value.(type) {
 	case chan interface{}:
@@ -46,8 +46,6 @@ func (store *SimpleStore) Load(key interface{}) (interface{}, error) {
 		fmt.Printf("storing %s", store.data[key])
 		store.mutex.Unlock()
 		return result, nil
-	default:
-		fmt.Println("DID Not a channel")
 	}
 	return value, nil
 }

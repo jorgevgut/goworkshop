@@ -145,8 +145,37 @@ go tool cover -html=coverage.out
 go test -v -cover -json > output.json
 ```
 
+#### Benchmarks
+Used to test out the performance at which functions run.
+To write a benchmark within a `_test.go` file, write a function that follows this naming and parameters.
+```go
+func BenchmarkNameOfFunctionToTest(B *testing.B) {
+  for i := 0; i < b.N; i++ {
+    // exec the function to test
+    NameOfFunctionToTest() // this example shows a globally available function, but it may belong to a type
+  }
+}
+```
+
+To run the benchmark use the `go test` command as follows.
+```bash
+# last parameter is a regex that matches 'NameOfFunctionToTest'
+go test -bench '.*'
+```
+
+Example:
+```
+# within the goworkshop directory
+cd cache
+go test -bench 'Store'
+```
+
 #### Linters and static analysis
 * One linter to rule them all -> [Gometalinter](https://github.com/alecthomas/gometalinter)
+```sh
+go get -u github.com/alecthomas/gometalinter
+gometalinter --install
+```
 * Goreportcard(it's opensource!) -> https://goreportcard.com/
  * [Here is the report for this project](https://goreportcard.com/report/github.com/jorgevgut/goworkshop)
 

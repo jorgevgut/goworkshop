@@ -62,3 +62,10 @@ func TestLiteStoreManager(t *testing.T) {
 		})
 	}
 }
+
+func BenchmarkStore(b *testing.B) {
+	store := NewSimpleStore()
+	for i := 0; i < b.N; i++ {
+		store.Store(i, "someValue")
+	}
+}
