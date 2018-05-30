@@ -1,12 +1,11 @@
 package main // this test belongs to the main package
 
 import (
-	"fmt"
 	"testing" // a test must import the testing package
 )
 
 func TestAlwaysPassing(t *testing.T) {
-	fmt.Println("this test always passes")
+	t.Log("this test always passes")
 }
 
 func TestAlwaysFailing(t *testing.T) {

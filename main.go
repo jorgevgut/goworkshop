@@ -8,10 +8,10 @@ import (
 )
 
 func main() {
-	var storeImpl cache.StoreManager
+	var storeImpl cache.StoreManager   // nolint
 	storeImpl = cache.NewSimpleStore() // replace constructor for different impls
-	var reqManager request.Manager
-	reqManager = request.Instance() // get an initialized instance
+	var reqManager request.Manager     // nolint
+	reqManager = request.Instance()    // get an initialized instance
 	reqManager.UseCache(storeImpl)
 
 	// build http request

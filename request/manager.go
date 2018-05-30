@@ -111,8 +111,8 @@ func (manager *ManagerImpl) Request(opts Options) chan *http.Response {
 				req.Header.Add(key, value)
 			}
 
-			cacheResponseChannel := make(chan interface{}, 1) // buffered channel is highly important
-			manager.cache.Store(opts.URL, cacheResponseChannel)
+			cacheResponseChannel := make(chan interface{}, 1)   // buffered channel is highly important
+			manager.cache.Store(opts.URL, cacheResponseChannel) // nolint: errcheck
 			//mutex.Unlock()
 
 			// ommiting error management :(

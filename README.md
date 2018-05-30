@@ -90,7 +90,7 @@ type DocumentedType struct {
 ```sh
 godoc -http=:6060
 ```
-This command will access all packages accessible from `$GOPATH` and `$GOROOT` within your system. Then head over to http://localhost:3000
+This command will access all packages accessible from `$GOPATH` and `$GOROOT` within your system. Then head over to http://localhost:6060
 
 #### Other tips and tricks
 
@@ -98,6 +98,10 @@ This command will access all packages accessible from `$GOPATH` and `$GOROOT` wi
 Visualizing dependencies is highly important since in Go circular dependencies are not allowed, godoc is a great tool for generating documentation, but using graphviz is way better to visualize our project's dependency tree.
 
 Follow [this guide](https://golang.github.io/dep/docs/daily-dep.html#visualizing-dependencies) to visualize your code.
+Having `dep`(check requirements) installed and `graphviz` in Mac, run this command from the root of a Go package.
+```bash
+dep status -dot | dot -T png | open -f -a /Applications/Preview.app
+```
 
 ---
 ## Unit testing
@@ -113,6 +117,12 @@ The Go programming language is shipped with a set of tools, one of the most impo
 * Test functions must expect a pointer to testing.T as parameter  ```(t *testing.T)```.
  * [Basic test file example](https://github.com/jorgevgut/goworkshop/blob/master/example_1_test.go).
 
+##### Concurrent testing
+TODO:
+For the time being use Go's Map type from sync package source code to view how concurrent testing is handled.
+* Map type documentation https://golang.org/pkg/sync/#Map
+* Test file for Map https://golang.org/src/sync/map_test.go look for the TestConcurrentRange function
+
 ##### Test coverage
 
 In addition to the Go 'test' tool, 'cover' can be used in conjunction with 'test' to analyze the code coverage from the available unit tests, to generate a report run the following commands.
@@ -127,7 +137,18 @@ go tool cover -html=coverage.out # generate html report
 go test ./... -coverprofile=coverage.out -v # added -v flag for verbose
 go tool cover -func=coverage.out
 go tool cover -html=coverage.out
+
+# test output can also be stored in JSON format
+# this command will run tests, and store it on a json file. the '-cover' flag
+# will print the % of code covered and will be found in output.json
+# the '-v' flag will print verbose logs
+go test -v -cover -json > output.json
 ```
+
+#### Linters and static analysis
+* One linter to rule them all -> [Gometalinter](https://github.com/alecthomas/gometalinter)
+* Goreportcard(it's opensource!) -> https://goreportcard.com/
+ * [Here is the report for this project](https://goreportcard.com/report/github.com/jorgevgut/goworkshop)
 
 ###### Good reads
 * Go cover story -> https://blog.golang.org/cover
