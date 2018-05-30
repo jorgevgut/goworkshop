@@ -1,4 +1,4 @@
-# Go-lang worshop
+# Go-lang workshop
 ---
 
 ## Index
