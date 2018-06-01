@@ -1,0 +1,31 @@
+Go Workshop
+Practical talk/tutorial
+1 Jun 2018
+Tags: go, workshop
+
+Jorge Villalobos
+Software Engineer, Wizeline
+jorge.villalobos@wizeline.com
+@jorge_vgut
+
+* Practical examples
+
+* Go routines and channels #ex 1
+
+.code examples/concurrentEx.go /^func GoRoutines/,/^}/
+.code examples/concurrentEx.go /^func Channels/,/^}/
+
+* Go routines and channels #ex 2
+
+.code examples/concurrentEx.go /^func GoRoutinesBlocked/,/^}/
+.code examples/concurrentEx.go /^func ChannelsBuffered/,/^}/
+
+* Practical request manager # design
+Manager interface
+.code request/manager.go /^type Manager interface/,/^}/
+
+Request interface and types
+.code request/request.go
+
+* Practical request manager # impl
+.code request/manager.go  /^type ManagerImpl/,/^}/
